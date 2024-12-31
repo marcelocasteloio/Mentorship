@@ -1,7 +1,10 @@
-var builder = WebApplication.CreateBuilder(args);
+using MCIO.Mentorship.RestWebApi.Payloads;
+using MCIO.Mentorship.RestWebApi.Responses;
+using MCIO.Mentorship.RestWebApi.ViewModels;
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+var builder = WebApplication.CreateBuilder(args);
+var customerViewModelCollection = new List<CustomerViewModel>();
+
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
@@ -12,26 +15,41 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
-
-var summaries = new[]
+app.MapPost("/api/customers", async (HttpRequest request, CancellationToken cancellationToken) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    var payload = await request.ReadFromJsonAsync<RegisterNewCustomerPayload>();
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
+    var customerViewModel = new CustomerViewModel
+    {
+        Id = Guid.CreateVersion7(),
+        FirstName = payload.FirstName,
+        LastName = payload.LastName,
+        BirthDate = payload.BirthDate,
+        Email = payload.Email
+    };
+
+    customerViewModelCollection.Add(customerViewModel);
+
+    return Results.Created(
+        uri: $"/api/customers/{customerViewModel.Id}",
+        value: new RegisterNewCustomerResponse {
+            Data = customerViewModel
+        }
+    );
 })
-.WithName("GetWeatherForecast");
+.WithName("PostCustomers");
+
+app.MapGet("/api/customers/{id:guid}", (Guid id) =>
+{
+    var customer = customerViewModelCollection.FirstOrDefault(c => c.Id == id);
+    if (customer == null)
+    {
+        return Results.NotFound();
+    }
+
+    return Results.Ok(new GetCustomerByIdResponse{Data = customer});
+})
+.WithName("GetCustomers");
 
 app.Run();
 
