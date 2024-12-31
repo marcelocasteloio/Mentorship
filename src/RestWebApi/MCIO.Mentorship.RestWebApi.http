@@ -1,0 +1,6 @@
+@MCIO.Mentorship.RestWebApi_HostAddress = http://localhost:5045
+
+GET {{MCIO.Mentorship.RestWebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
