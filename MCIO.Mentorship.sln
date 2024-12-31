@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1C8B3CF8-CFAF-4C3F-8F13-4C1F8332CCFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCIO.Mentorship.RestWebApi", "src\RestWebApi\MCIO.Mentorship.RestWebApi.csproj", "{B0291EB2-702F-4B24-96EB-4AE1F4D6DA11}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{08C6D7DC-9549-4E4C-A4C3-1003BD0092E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "tests\IntegrationTests\IntegrationTests.csproj", "{37305EB2-DBE0-4A38-9CFC-192E007C50CC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B0291EB2-702F-4B24-96EB-4AE1F4D6DA11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0291EB2-702F-4B24-96EB-4AE1F4D6DA11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0291EB2-702F-4B24-96EB-4AE1F4D6DA11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0291EB2-702F-4B24-96EB-4AE1F4D6DA11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37305EB2-DBE0-4A38-9CFC-192E007C50CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37305EB2-DBE0-4A38-9CFC-192E007C50CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37305EB2-DBE0-4A38-9CFC-192E007C50CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37305EB2-DBE0-4A38-9CFC-192E007C50CC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B0291EB2-702F-4B24-96EB-4AE1F4D6DA11} = {1C8B3CF8-CFAF-4C3F-8F13-4C1F8332CCFB}
+		{37305EB2-DBE0-4A38-9CFC-192E007C50CC} = {08C6D7DC-9549-4E4C-A4C3-1003BD0092E4}
+	EndGlobalSection
+EndGlobal
